@@ -13,6 +13,9 @@ docs_file = nil
 OptionParser.parse(ARGV.dup) do |parser|
   parser.banner = "Motion detector"
 
+  parser.on("-b HOST", "--bind=HOST", "Specifies the server host") { |bind_host| host = bind_host }
+  parser.on("-p PORT", "--port=PORT", "Specifies the server port") { |bind_port| port = bind_port.to_i }
+
   parser.on("-g", "--gpio", "List the General Purpose Input Output chips available") do
     puts "\nGPIO Chips\n==================="
     Dir.glob("/dev/gpiochip*").sort!.each do |path|

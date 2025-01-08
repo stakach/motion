@@ -14,6 +14,7 @@ dependencies:
   # General Purpose IO control
   gpio:
     github: spider-gazelle/gpio.cr
+    # remove this if using gpio v1.x
     branch: main
 
   # Signaling changes

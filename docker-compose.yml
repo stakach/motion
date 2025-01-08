@@ -4,7 +4,8 @@ services:
   # run: `docker-compose up -d` to launch the service
 
   motion:
-    build: .
+    image: stakach/motion
+    # build: .
     restart: always
 
     # network

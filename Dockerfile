@@ -68,11 +68,11 @@ SHELL ["/bin/ash", "-eo", "pipefail", "-c"]
 
 # Extract binary dependencies
 RUN for binary in /app/bin/*; do \
-        ldd "$binary" | \
-        tr -s '[:blank:]' '\n' | \
-        grep '^/' | \
-        xargs -I % sh -c 'mkdir -p $(dirname deps%); cp % deps%;'; \
-    done
+     { ldd "$binary" 2>/dev/null || readelf -d "$binary" | grep NEEDED | awk '{print $5}' | tr -d [] ; } | \
+     tr -s '[:blank:]' '\n' | \
+     grep '^/' | \
+     xargs -I % sh -c 'mkdir -p $(dirname deps%); cp % deps%;'; \
+ done
 
 # Generate OpenAPI docs while we still have source code access
 RUN ./bin/motion --docs --file=openapi.yml
@@ -121,5 +121,5 @@ USER appuser:appuser
 
 # Run the app binding on port 3000
 EXPOSE 3000
-ENTRYPOINT ["/monitor"]
-CMD ["/monitor", "-b", "0.0.0.0", "-p", "3000"]
+ENTRYPOINT ["/motion"]
+CMD ["/motion", "-b", "0.0.0.0", "-p", "3000"]
