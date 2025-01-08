@@ -1,0 +1,39 @@
+name: edge-ai
+version: 1.0.0
+
+dependencies:
+  # The server framework
+  action-controller:
+    github: spider-gazelle/action-controller
+
+  # Configuration file change monitoring
+  inotify:
+    github: petoem/inotify.cr
+    branch: master
+
+  # General Purpose IO control
+  gpio:
+    github: spider-gazelle/gpio.cr
+    branch: main
+
+  # Signaling changes
+  mqtt:
+    github: spider-gazelle/crystal-mqtt
+
+  # Timers
+  tasker:
+    github: spider-gazelle/tasker
+
+development_dependencies:
+  # linting
+  ameba:
+    github: veelenga/ameba
+  
+  # API testings
+  hot_topic:
+    github: jgaskins/hot_topic
+
+# compile target
+targets:
+  motion:
+    main: src/motion.cr

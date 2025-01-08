@@ -1,0 +1,26 @@
+services:
+  # The monitor service
+  # run: `docker-compose build` to update the service
+  # run: `docker-compose up -d` to launch the service
+
+  motion:
+    build: .
+    restart: always
+
+    # network
+    container_name: motion
+    hostname: motion
+
+    volumes:
+      - ./config/:/config/
+
+    # required to open GPIO chips
+    devices:
+      - "/dev/gpiochip0:/dev/gpiochip0"
+
+    # required to inspect GPIO chips
+    cap_add:
+      - SYS_RAWIO
+
+    ports:
+      - "3000:3000"

@@ -1,0 +1,19 @@
+motion:
+  # milliseconds of motion detected before triggering
+  detector:
+    chip: GPIO1
+    line: 2
+
+  # milliseconds to keep the output high
+  active_ms: 3000
+  # milliseconds after output is brought low before we can raise it again
+  debounce_ms: 2000
+
+  output:
+    - chip: GPIO1
+      line: 3
+    - chip: GPIO1
+      line: 4
+
+  webhook_uri: ""
+  mqtt_uri: ""

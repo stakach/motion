@@ -1,0 +1,11 @@
+doc
+lib
+.crystal
+.shards
+app
+*.dwarf
+bin
+.DS_Store
+*.so
+detections/*.sock
+model_storage/*.tflite
